@@ -44,12 +44,13 @@ public class AnnotationBeanWiringInfoResolverTests {
 		BeanWiringInfo info = resolver.resolveWiringInfo("java.lang.String is not @Configurable");
 		assertNull("Must be returning null for a non-@Configurable class instance", info);
 	}
-
+	//读取Configurable注解
 	@Test
 	public void testResolveWiringInfoWithAnInstanceOfAnAnnotatedClass() {
 		AnnotationBeanWiringInfoResolver resolver = new AnnotationBeanWiringInfoResolver();
 		BeanWiringInfo info = resolver.resolveWiringInfo(new Soap());
 		assertNotNull("Must *not* be returning null for a non-@Configurable class instance", info);
+		assertEquals(Soap.class.getName(), info.getBeanName());
 	}
 
 	@Test
